@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace ScratchFlow.Models
 {
     /// <summary>
-    /// 全ブロックの基底クラス
+    /// ブロック基底クラス
     /// </summary>
     [Serializable]
     public abstract class Block
@@ -18,35 +18,23 @@ namespace ScratchFlow.Models
         /// <summary>
         /// ブロック種類
         /// </summary>
-        public BlockType Type { get; private set; }
+        public BlockType Type { get; }
 
         /// <summary>
-        /// 画面表示名
+        /// 表示名
         /// </summary>
-        public virtual string Text { get; set; }
+        public string Text { get; set; }
 
         /// <summary>
-        /// 子ブロック
-        /// LOOPやIFのみ使用
+        /// IFやLOOPの中に入るブロック
         /// </summary>
-        public List<Block> Children { get; private set; }
+        public List<Block> Children { get; }
 
         /// <summary>
-        /// 親ブロック
-        /// </summary>
-        [NonSerialized]
-        public Block Parent;
-
-        /// <summary>
-        /// 実行中表示用
+        /// デバッグ表示用
         /// </summary>
         [NonSerialized]
         public bool IsRunning;
-
-        /// <summary>
-        /// 実行
-        /// </summary>
-        public abstract void Execute(Engine.Context context);
 
         public override string ToString()
         {
